@@ -85,5 +85,5 @@ async def predict(file: UploadFile = File(...)):
     except Exception as e:
         raise HTTPException(status_code=400, detail=f"Erreur pendant la prédiction : {e}")
 @app.get("/")
-async def welcome():
+def welcome():
     return JSONResponse(content={"welcome"})
