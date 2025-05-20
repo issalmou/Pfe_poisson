@@ -84,3 +84,6 @@ async def predict(file: UploadFile = File(...)):
         return JSONResponse(content={"class": prediction, "confiance": confiance})
     except Exception as e:
         raise HTTPException(status_code=400, detail=f"Erreur pendant la prédiction : {e}")
+@app.get("/")
+async def welcome():
+    return JSONResponse(content={"welcome"})
