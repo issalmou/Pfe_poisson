@@ -11,7 +11,7 @@ ENV GDOWN_CACHE_DIR=/tmp/.cache/gdown
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Exposer le nouveau port
-EXPOSE 9000
+EXPOSE 8000
 
 # Lancer uvicorn sur le port 9000
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "9000"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
