@@ -37,7 +37,7 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'  # réduire logs TensorFlow
 def download_model():
     if not os.path.exists(MODEL_PATH):
         print("Téléchargement du modèle depuis Dropbox...")
-        url = "https://www.dropbox.com/scl/fi/5yvg9t9ix9c8tsnc3xqp9/vgg16_model_v2_20250518_200921.h5?rlkey=zdn3pnodvdkera4rm9ue3tx7d&st=y021guoo&dl=1"
+        url = "https://www.dl.dropboxusercontent.com/scl/fi/XXXXX/vgg16_model_v2_20250518_200921.h5?...&dl=1"
         response = requests.get(url)
         if response.status_code == 200:
             with open(MODEL_PATH, "wb") as f:
@@ -84,6 +84,10 @@ def predict_image(image_bytes):
     confiance = predictions[0][predicted_class] * 100
     # Retourner le nom de la classe
     return class_names[predicted_class],float(np.round(confiance,2))
+
+@app.get("/")
+def root():
+    return {"message": "API is working"}
 
 @app.post("/predict")
 async def predict(file: UploadFile = File(...)):
