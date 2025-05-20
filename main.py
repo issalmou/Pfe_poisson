@@ -78,10 +78,6 @@ def predict_image(image_bytes):
     # Retourner le nom de la classe
     return class_names[predicted_class],float(np.round(confiance,2))
 
-@app.get("/")
-def welcome():
-    return JSONResponse(content={"welcome"})
-
 @app.post("/predict")
 async def predict(file: UploadFile = File(...)):
     # Lire le contenu du fichier image
