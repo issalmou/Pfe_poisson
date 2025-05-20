@@ -7,6 +7,7 @@ from PIL import Image
 import io
 import gdown
 import os
+import requests
 
 app = FastAPI(title="API de Classification de Poisson")
 
