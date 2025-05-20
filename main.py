@@ -70,6 +70,10 @@ def predict_image(image_bytes):
     return class_names[predicted_class], float(np.round(confiance, 2))
 
 # --- Endpoint de prédiction ---
+@app.get("/")
+def welcome():
+    return JSONResponse(content={"welcome"})
+
 @app.post("/predict")
 async def predict(file: UploadFile = File(...)):
     global model
@@ -84,6 +88,3 @@ async def predict(file: UploadFile = File(...)):
         return JSONResponse(content={"class": prediction, "confiance": confiance})
     except Exception as e:
         raise HTTPException(status_code=400, detail=f"Erreur pendant la prédiction : {e}")
-@app.get("/")
-def welcome():
-    return JSONResponse(content={"welcome"})
