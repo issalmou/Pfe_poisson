@@ -7,6 +7,8 @@ from PIL import Image
 import io
 import gdown
 import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'  # 0 = all logs, 1 = INFO, 2 = WARNING, 3 = ERROR only
+
 import requests
 
 app = FastAPI(title="API de Classification de Poisson")
