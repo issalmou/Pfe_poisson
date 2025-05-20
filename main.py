@@ -33,13 +33,17 @@ else:
 # --- Fonction téléchargement modèle ---
 def download_model():
     if not os.path.exists(MODEL_PATH):
-        print("Téléchargement du modèle...")
-        cache_dir = os.environ.get("GDOWN_CACHE_DIR", "/tmp/.cache/gdown")
-        os.makedirs(cache_dir, exist_ok=True)
-        os.environ["GDOWN_CACHE_DIR"] = cache_dir
-        gdown.download(DOWNLOAD_URL, MODEL_PATH, quiet=False, use_cookies=False)
+        print("Téléchargement du modèle depuis Dropbox...")
+        url = "https://www.dropbox.com/scl/fi/5yvg9t9ix9c8tsnc3xqp9/vgg16_model_v2_20250518_200921.h5?rlkey=zdn3pnodvdkera4rm9ue3tx7d&st=y021guoo&dl=1"
+        response = requests.get(url)
+        if response.status_code == 200:
+            with open(MODEL_PATH, "wb") as f:
+                f.write(response.content)
+            print("Modèle téléchargé avec succès.")
+        else:
+            raise Exception(f"Erreur de téléchargement : {response.status_code}")
     else:
-        print("Modèle déjà téléchargé.")
+        print("Modèle déjà présent.")
 
 # --- Chargement du modèle au démarrage ---
 @app.on_event("startup")
