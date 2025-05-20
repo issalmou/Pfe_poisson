@@ -11,24 +11,24 @@ import os
 app = FastAPI(title="API de Classification de Poisson")
 
 MODEL_PATH = "/tmp/model.h5"
-DRIVE_ID = "1JtGnwRwNeEKpHqrbaHAt3Vdf4-qF6Qh5"
-DOWNLOAD_URL = f"https://drive.google.com/uc?id={DRIVE_ID}"
+# DRIVE_ID = "1JtGnwRwNeEKpHqrbaHAt3Vdf4-qF6Qh5"
+# DOWNLOAD_URL = f"https://drive.google.com/uc?id={DRIVE_ID}"
 
 model = None  # variable globale pour le modèle chargé
 
 # --- Gestion GPU/CPU propre ---
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'  # réduire logs TensorFlow
 
-gpus = tf.config.experimental.list_physical_devices('GPU')
-if gpus:
-    try:
-        for gpu in gpus:
-            tf.config.experimental.set_memory_growth(gpu, True)
-        print(f"GPU(s) détecté(s) : {[gpu.name for gpu in gpus]}")
-    except RuntimeError as e:
-        print(f"Erreur configuration GPU : {e}")
-else:
-    print("Aucun GPU détecté, utilisation du CPU.")
+# gpus = tf.config.experimental.list_physical_devices('GPU')
+# if gpus:
+#     try:
+#         for gpu in gpus:
+#             tf.config.experimental.set_memory_growth(gpu, True)
+#         print(f"GPU(s) détecté(s) : {[gpu.name for gpu in gpus]}")
+#     except RuntimeError as e:
+#         print(f"Erreur configuration GPU : {e}")
+# else:
+#     print("Aucun GPU détecté, utilisation du CPU.")
 
 # --- Fonction téléchargement modèle ---
 def download_model():
